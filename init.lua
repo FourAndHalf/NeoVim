@@ -1,0 +1,2 @@
+require("fourandhalf");
+print("lua");
