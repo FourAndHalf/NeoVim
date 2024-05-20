@@ -1,2 +1,1 @@
 require("fourandhalf");
-print("lua");
