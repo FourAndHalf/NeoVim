@@ -53,3 +53,5 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
+vim.api.nvim_set_keymap('v', 'p', '"_dP', { noremap = true, silent = true })
