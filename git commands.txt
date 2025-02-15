@@ -6,3 +6,6 @@
 
 -- Show all commits that changed the specified file
   git log --follow --name-status --graph --oneline -p -- SpotifyDownloader/settings.py
+
+-- Restore a file to an earlier commit state
+  git restore --source=7350fba --staged --worktree SpotifyDownloader/settings.py
