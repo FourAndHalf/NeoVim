@@ -1,0 +1,8 @@
+-- Show difference occured in a file 
+  git log --graph --pretty=format:'%h%s' --patch -- SpotifyDownloader/settings.py
+
+-- Show all the commits that occured in main
+  git log --oneline main
+
+-- Show all commits that changed the specified file
+  git log --follow --name-status --graph --oneline -p -- SpotifyDownloader/settings.py
