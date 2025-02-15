@@ -9,3 +9,6 @@
 
 -- Restore a file to an earlier commit state
   git restore --source=7350fba --staged --worktree SpotifyDownloader/settings.py
+
+-- For selectively revert parts of the file
+  git checkout -p 7350fba -- SpotifyDownloader/settings.py
