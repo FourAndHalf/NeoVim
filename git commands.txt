@@ -12,3 +12,10 @@
 
 -- For selectively revert parts of the file
   git checkout -p 7350fba -- SpotifyDownloader/settings.py
+
+-- Git stash commands
+  git stash	
+  git stash list
+  git stash apply  
+  git stash pop
+  git stash drop
