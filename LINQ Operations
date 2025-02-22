@@ -10,3 +10,29 @@ Select Specified Fields
   };
   var names = people.Select(p => p.Name).ToList();
 
+Sorting
+  var sortedNumbers = numbers.OrderBy(n => n).ToList();
+  var sortedDescending = numbers.OrderByDescending(n => n).ToList();
+
+Grouping
+  var groupedPeople = people.GroupBy(p => p.Age)
+                            .Select(g => new { Age = g.Key, Count = g.Count() });
+
+Joining Two Collections
+  var employees = new List<Employee>
+  {
+      new Employee { Id = 1, Name = "Alice", DepartmentId = 2 },
+      new Employee { Id = 2, Name = "Bob", DepartmentId = 1 }
+  };
+  
+  var departments = new List<Department>
+  {
+      new Department { Id = 1, Name = "HR" },
+      new Department { Id = 2, Name = "IT" }
+  };
+  
+  var employeeDepartments = employees.Join(departments,
+      emp => emp.DepartmentId,
+      dept => dept.Id,
+      (emp, dept) => new { emp.Name, Department = dept.Name }).ToList();
+
