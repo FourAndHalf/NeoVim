@@ -1,0 +1,12 @@
+Filter Data
+  var numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+  var evenNumbers = numbers.Where(n => n % 2 == 0).ToList();
+
+Select Specified Fields
+  var people = new List<Person>
+  {
+      new Person { Name = "John", Age = 30 },
+      new Person { Name = "Jane", Age = 25 }
+  };
+  var names = people.Select(p => p.Name).ToList();
+
