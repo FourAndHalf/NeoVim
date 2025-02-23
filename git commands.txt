@@ -19,3 +19,10 @@
   git stash apply  
   git stash pop
   git stash drop
+
+-- Branching
+  git branch                  
+  git branch <name>         
+  git checkout <branch>     
+  git checkout -b <name>    
+  git merge <branch>         
