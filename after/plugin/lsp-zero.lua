@@ -7,7 +7,7 @@ lsp.extend_lspconfig()
 -- Initialize mason
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'rust_analyzer', 'cssls', 'html', 'lua_ls', 'tsserver' },
+  ensure_installed = { 'rust_analyzer', 'cssls', 'html', 'lua_ls' },
   handlers = {
     lsp.default_setup,
   }
