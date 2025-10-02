@@ -1,5 +1,4 @@
 local lsp = require("lsp-zero")
-local lspconfig = require('lspconfig')
 
 -- Optional: recommended LSP settings
 lsp.extend_lspconfig()
@@ -7,20 +6,20 @@ lsp.extend_lspconfig()
 -- Initialize mason
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'rust_analyzer', 'cssls', 'html', 'lua_ls' },
+  ensure_installed = { 'rust_analyzer', 'cssls', 'html', 'lua_ls', 'gopls' },
   handlers = {
     lsp.default_setup,
   }
 })
 
-lspconfig.lua_ls.setup({
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
-  }
+vim.lsp.config("lua_ls", {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            },
+        },
+    },
 })
 
 -- (Optional) Setup preferences

@@ -11,8 +11,9 @@ return require('packer').startup(function(use)
 
     use 'nvim-tree/nvim-web-devicons'
 
+    use { "catppuccin/nvim", as = "catppuccin" }
     use({ 'rose-pine/neovim', as = 'rose-pine' })
-    vim.cmd('colorscheme rose-pine')
+    vim.cmd('colorscheme catppuccin')
 
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
@@ -47,15 +48,15 @@ return require('packer').startup(function(use)
         requires = "nvim-tree/nvim-web-devicons"
     }
 
-    -- use {
-    --     'nvim-tree/nvim-tree.lua',
-    --     requires = {
-    --         'nvim-tree/nvim-web-devicons', -- for file icons
-    --     },
-    --     config = function()
-    --         require("nvim-tree").setup()
-    --     end
-    -- }
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- for file icons
+        },
+        config = function()
+            require("nvim-tree").setup()
+        end
+    }
 
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -78,6 +79,12 @@ return require('packer').startup(function(use)
             'saadparwaiz1/cmp_luasnip',
         }
     }
+
+    use('mfussenegger/nvim-dap')
+    use('jay-babu/mason-nvim-dap.nvim')
+    use('rcarriga/nvim-dap-ui')
+
+    use('David-Kunz/gen.nvim')
 
 end)
 

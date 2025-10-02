@@ -15,6 +15,12 @@ vim.keymap.set('n', '<leader>ps', function()
         prompt_title = "Grep (Project)"
     })
 end)
+vim.keymap.set('n', '<leader>pc', function()
+  builtin.current_buffer_fuzzy_find({
+    prompt_title = "Search Current File",
+    previewer = false,
+  })
+end)
 
 -- vim.keymap.set('n', '<leader>ps', function()
 -- 	builtin.grep_string({ search = vim.fn.input("Grep > ") });
