@@ -1,0 +1,2 @@
+## Search for a string in file
+  grep '<string>' '<file>'
