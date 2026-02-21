@@ -27,7 +27,8 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Split screen 
-vim.keymap.set('n', '<leader>v', ':vsplit<CR>', { desc = 'Vertical split' })
+vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Vertical split' })
+vim.keymap.set('n', '<leader>h', '<C-w>s', { desc = 'Horizontal split' })
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
