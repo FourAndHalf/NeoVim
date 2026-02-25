@@ -27,7 +27,7 @@ return require('packer').startup(function(use)
             ts_update()
         end,
         config = function()
-            require'nvim-treesitter.configs'.setup {
+            require 'nvim-treesitter.configs'.setup {
                 ensure_installed = { "lua", "python", "javascript", "html", "css", "rust", "go" },
                 highlight = {
                     enable = true,
@@ -62,10 +62,10 @@ return require('packer').startup(function(use)
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
         requires = {
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
-            {'neovim/nvim-lspconfig'},
-            {'L3MON4D3/LuaSnip'},
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
+            { 'neovim/nvim-lspconfig' },
+            { 'L3MON4D3/LuaSnip' },
         }
     }
 
@@ -85,6 +85,4 @@ return require('packer').startup(function(use)
     use('rcarriga/nvim-dap-ui')
 
     use('David-Kunz/gen.nvim')
-
 end)
-

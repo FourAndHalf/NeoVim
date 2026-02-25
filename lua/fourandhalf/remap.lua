@@ -58,6 +58,18 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
+vim.keymap.set("n", "<leader>xx", function()
+  require("trouble").toggle("diagnostics")
+end)
+
+vim.keymap.set("n", "<leader>xr", function()
+  require("trouble").toggle("references")
+end)
+
+vim.keymap.set("n", "<leader>xq", function()
+  require("trouble").toggle("quickfix")
+end)
+
 vim.api.nvim_set_keymap('v', 'p', '"_dP', { noremap = true, silent = true })
 
 vim.keymap.set('n', '<F5>', function() require'dap'.continue() end)
