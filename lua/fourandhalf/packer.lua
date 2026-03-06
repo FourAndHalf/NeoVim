@@ -82,7 +82,10 @@ return require('packer').startup(function(use)
 
     use('mfussenegger/nvim-dap')
     use('jay-babu/mason-nvim-dap.nvim')
-    use('rcarriga/nvim-dap-ui')
+    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
+    use('theHamsta/nvim-dap-virtual-text')
+    use('mfussenegger/nvim-dap-python')
+    use('rcarriga/cmp-dap')
 
     use('David-Kunz/gen.nvim')
 end)

@@ -26,7 +26,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
--- Split screen 
+-- Split screen
 vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Vertical split' })
 vim.keymap.set('n', '<leader>h', '<C-w>s', { desc = 'Horizontal split' })
 
@@ -58,27 +58,4 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
-vim.keymap.set("n", "<leader>xx", function()
-  require("trouble").toggle("diagnostics")
-end)
-
-vim.keymap.set("n", "<leader>xr", function()
-  require("trouble").toggle("references")
-end)
-
-vim.keymap.set("n", "<leader>xq", function()
-  require("trouble").toggle("quickfix")
-end)
-
 vim.api.nvim_set_keymap('v', 'p', '"_dP', { noremap = true, silent = true })
-
-vim.keymap.set('n', '<F5>', function() require'dap'.continue() end)
-vim.keymap.set('n', '<F10>', function() require'dap'.step_over() end)
-vim.keymap.set('n', '<F11>', function() require'dap'.step_into() end)
-vim.keymap.set('n', '<F12>', function() require'dap'.step_out() end)
-vim.keymap.set('n', '<Leader>b', function() require'dap'.toggle_breakpoint() end)
-vim.keymap.set('n', '<Leader>dr', function() require'dap'.repl.open() end)
-vim.keymap.set('n', '<Leader>du', function() require'dapui'.toggle() end)
-
--- AI Code Assistant 
-

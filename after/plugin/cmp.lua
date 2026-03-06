@@ -23,3 +23,10 @@ cmp.setup({
   })
 })
 
+-- DAP completion
+cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+  sources = {
+    { name = "dap" },
+  },
+})
+
