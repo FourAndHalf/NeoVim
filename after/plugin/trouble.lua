@@ -1,26 +1,26 @@
-require("trouble").setup({
-  icons = true,
-  -- your configuration comes here
-  -- or leave it empty to use the default settings
-  -- refer to the configuration section below
-})
+require("trouble").setup()
 
 -- Keymaps
 vim.keymap.set("n", "<leader>xx", "<cmd>Trouble toggle<cr>",
-  {silent = true, desc = "Toggle Trouble"}
+  { silent = true, desc = "Toggle Trouble" }
 )
-vim.keymap.set("n", "<leader>xw", "<cmd>Trouble toggle workspace_diagnostics<cr>",
-  {ilent = true, desc = "Workspace Diagnostics"}
+
+vim.keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>",
+  { silent = true, desc = "Workspace Diagnostics" }
 )
-vim.keymap.set("n", "<leader>xd", "<cmd>Trouble toggle document_diagnostics<cr>",
-  {silent = true, desc = "Document Diagnostics"}
+
+vim.keymap.set("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+  { silent = true, desc = "Document Diagnostics" }
 )
-vim.keymap.set("n", "<leader>xl", "<cmd>Trouble toggle loclist<cr>",
-  {silent = true, desc = "Loclist"}
+
+vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>",
+  { silent = true, desc = "Location List" }
 )
-vim.keymap.set("n", "<leader>xq", "<cmd>Trouble toggle quickfix<cr>",
-  {silent = true, desc = "Quickfix"}
+
+vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix toggle<cr>",
+  { silent = true, desc = "Quickfix List" }
 )
-vim.keymap.set("n", "gR", "<cmd>Trouble toggle lsp_references<cr>",
-  {silent = true, desc = "LSP References"}
+
+vim.keymap.set("n", "gR", "<cmd>Trouble lsp_references toggle<cr>",
+  { silent = true, desc = "LSP References" }
 )
