@@ -1,0 +1,214 @@
+return {
+    {
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "neovim/nvim-lspconfig",
+            "L3MON4D3/LuaSnip",
+        },
+        config = function()
+            local lsp = require("lsp-zero")
+
+            -- Optional: recommended LSP settings
+            lsp.extend_lspconfig()
+
+            -- Initialize mason
+            require('mason').setup({})
+            require('mason-lspconfig').setup({
+              ensure_installed = { 'rust_analyzer', 'cssls', 'html', 'lua_ls', 'gopls' },
+              handlers = {
+                lsp.default_setup,
+              }
+            })
+
+            vim.lsp.config("lua_ls", {
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { 'vim' }
+                        },
+                    },
+                },
+            })
+
+            -- (Optional) Setup preferences
+            lsp.set_preferences({
+              suggest_lsp_servers = false,
+              sign_icons = {
+                error = '✘',
+                warn  = '▲',
+                hint  = '⚑',
+                info  = '»'
+              }
+            })
+
+            lsp.setup()
+
+            local on_attach = function(_, bufnr)
+              local map = function(mode, lhs, rhs)
+                vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, { noremap = true, silent = true })
+              end
+              map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+              map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+              map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+              map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+            end
+
+            lsp.on_attach(on_attach)
+
+            vim.diagnostic.config({
+              virtual_text = true,
+              signs = true,
+              update_in_insert = false,
+              severity_sort = true,
+            })
+
+
+        end
+    },
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "saadparwaiz1/cmp_luasnip",
+        },
+        config = function()
+            local cmp = require('cmp')
+            local luasnip = require('luasnip')
+
+            require("luasnip.loaders.from_vscode").lazy_load() -- load snippets if you have any
+
+            cmp.setup({
+              snippet = {
+                expand = function(args)
+                  luasnip.lsp_expand(args.body)
+                end,
+              },
+              mapping = cmp.mapping.preset.insert({
+                ['<C-Space>'] = cmp.mapping.complete(),
+                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ['<Tab>'] = cmp.mapping.select_next_item(),
+                ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+              }),
+              sources = cmp.config.sources({
+                { name = 'nvim_lsp' },
+                { name = 'luasnip' },
+                { name = 'buffer' },
+                { name = 'path' },
+              })
+            })
+
+            -- DAP completion
+            cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+              sources = {
+                { name = "dap" },
+              },
+            })
+
+
+        end
+    },
+    {
+        "onsails/lspkind.nvim",
+        config = function()
+            require('lspkind').init({
+              -- optional: enable text alongside symbols
+              mode = 'symbol_text',
+              -- optional: preset for icons
+              preset = 'codicons',
+              -- optional: custom symbol map
+              symbol_map = {
+                Text = "", Method = "", Function = "", Constructor = "",
+                Field = "", Variable = "", Class = "", Interface = "",
+                Module = "", Property = "", Unit = "", Value = "",
+                Enum = "", Keyword = "", Snippet = "", Color = "",
+                File = "", Reference = "", Folder = "", EnumMember = "",
+                Constant = "", Struct = "", Event = "", Operator = "",
+                TypeParameter = ""
+              },
+            })
+
+
+        end
+    },
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("trouble").setup()
+
+            -- Keymaps
+            vim.keymap.set("n", "<leader>xx", "<cmd>Trouble toggle<cr>",
+              { silent = true, desc = "Toggle Trouble" }
+            )
+
+            vim.keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>",
+              { silent = true, desc = "Workspace Diagnostics" }
+            )
+
+            vim.keymap.set("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+              { silent = true, desc = "Document Diagnostics" }
+            )
+
+            vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>",
+              { silent = true, desc = "Location List" }
+            )
+
+            vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix toggle<cr>",
+              { silent = true, desc = "Quickfix List" }
+            )
+
+            vim.keymap.set("n", "gR", "<cmd>Trouble lsp_references toggle<cr>",
+              { silent = true, desc = "LSP References" }
+            )
+
+        end
+    },
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            -- Recommended to disable netrw at the very start of your init.lua
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+
+            -- Optional: better colors
+            vim.opt.termguicolors = true
+
+            -- Setup
+             require("nvim-tree").setup({
+               view = {
+                 side = "left",
+                 width = 30,
+                 preserve_window_proportions = true,
+               },
+               renderer = {
+                 highlight_git = true,
+                 icons = {
+                   show = {
+                     file = true,
+                     folder = true,
+                     folder_arrow = true,
+                    git = true,
+                   },
+                 },
+               },
+               git = {
+                 enable = true,
+               },
+             })
+
+            -- Keymap to toggle the tree
+             -- vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+             vim.keymap.set('n', '<leader>pv', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+
+
+        end
+    },
+    "rafamadriz/friendly-snippets" 
+}
