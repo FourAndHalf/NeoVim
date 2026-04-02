@@ -29,6 +29,10 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- Split screen
 vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = 'Vertical split' })
 vim.keymap.set('n', '<leader>h', '<C-w>s', { desc = 'Horizontal split' })
+vim.keymap.set('n', '<leader>1', '1<C-w>w', { desc = 'Go to window 1' })
+vim.keymap.set('n', '<leader>2', '2<C-w>w', { desc = 'Go to window 2' })
+vim.keymap.set('n', '<leader>3', '3<C-w>w', { desc = 'Go to window 3' })
+vim.keymap.set('n', '<leader>4', '4<C-w>w', { desc = 'Go to window 4' })
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")

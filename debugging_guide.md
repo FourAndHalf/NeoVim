@@ -24,7 +24,11 @@ You now have a powerful debugging environment powered by `nvim-dap`.
 | `<F11>` | **Step Into** | Step into the function call on the current line. |
 | `<F12>` | **Step Out** | Finish current function and return to caller. |
 | `<leader>dr`| **REPL** | Open the DAP REPL for interactive evaluation. |
-| `<leader>xx`| **Trouble** | Toggle Trouble to see LSP diagnostics/errors. |
+| `<leader>xx`| **Trouble** | Toggle Trouble panel. |
+| `<leader>xw`| **Workspace Diagnostics** | Toggle Trouble for workspace diagnostics. |
+| `<leader>xd`| **Document Diagnostics** | Toggle Trouble for current document diagnostics. |
+| `<leader>xl`| **Location List** | Toggle Trouble location list. |
+| `<leader>xq`| **Quickfix List** | Toggle Trouble quickfix list. |
 
 ### Advanced Debugging Tools
 

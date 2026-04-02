@@ -117,11 +117,8 @@ return {
         "onsails/lspkind.nvim",
         config = function()
             require('lspkind').init({
-              -- optional: enable text alongside symbols
               mode = 'symbol_text',
-              -- optional: preset for icons
               preset = 'codicons',
-              -- optional: custom symbol map
               symbol_map = {
                 Text = "", Method = "", Function = "", Constructor = "",
                 Field = "", Variable = "", Class = "", Interface = "",
@@ -140,11 +137,22 @@ return {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            require("trouble").setup()
+            require("trouble").setup({
+                modes = {
+                    diagnostics = {
+                        filter = {
+                            severity = {
+                                vim.diagnostic.severity.ERROR,
+                                vim.diagnostic.severity.WARN,
+                            },
+                        },
+                    },
+                },
+            })
 
             -- Keymaps
-            vim.keymap.set("n", "<leader>xx", "<cmd>Trouble toggle<cr>",
-              { silent = true, desc = "Toggle Trouble" }
+            vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",
+              { silent = true, desc = "Toggle Trouble Diagnostics" }
             )
 
             vim.keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>",
@@ -173,11 +181,9 @@ return {
         "nvim-tree/nvim-tree.lua",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            -- Recommended to disable netrw at the very start of your init.lua
             vim.g.loaded_netrw = 1
             vim.g.loaded_netrwPlugin = 1
 
-            -- Optional: better colors
             vim.opt.termguicolors = true
 
             -- Setup
@@ -203,12 +209,9 @@ return {
                },
              })
 
-            -- Keymap to toggle the tree
-             -- vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
              vim.keymap.set('n', '<leader>pv', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-
 
         end
     },
-    "rafamadriz/friendly-snippets" 
+    { "rafamadriz/friendly-snippets" }
 }

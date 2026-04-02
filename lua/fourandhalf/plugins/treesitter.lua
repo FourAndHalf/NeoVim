@@ -10,7 +10,7 @@ return {
 
             configs.setup {
               -- A list of parser names, or "all" (the five listed parsers should always be installed)
-              ensure_installed = { "python", "lua", "rust", "javascript", "query", "typescript", "html", "css", "go", "vim", "vimdoc" },
+              ensure_installed = { "python", "lua", "rust", "javascript", "query", "typescript", "html", "css", "go", "vim", "vimdoc", "markdown", "markdown_inline" },
 
               -- Install parsers synchronously (only applied to `ensure_installed`)
               sync_install = false,
