@@ -10,14 +10,60 @@ return {
         },
         config = function()
             local lsp = require("lsp-zero")
+            local uv = vim.uv or vim.loop
+
+            local function path_exists(path)
+              return path and uv.fs_stat(path) ~= nil
+            end
+
+            local function get_python_path(root_dir)
+              local venv = os.getenv("VIRTUAL_ENV")
+              if venv and path_exists(venv .. "/bin/python") then
+                return venv .. "/bin/python"
+              end
+
+              local conda = os.getenv("CONDA_PREFIX")
+              if conda and path_exists(conda .. "/bin/python") then
+                return conda .. "/bin/python"
+              end
+
+              if root_dir then
+                for _, dir in ipairs({ ".venv", "venv", "env" }) do
+                  local python = root_dir .. "/" .. dir .. "/bin/python"
+                  if path_exists(python) then
+                    return python
+                  end
+                end
+              end
+
+              return vim.fn.exepath("python3") ~= "" and vim.fn.exepath("python3")
+                or vim.fn.exepath("python")
+            end
 
             -- Optional: recommended LSP settings
             lsp.extend_lspconfig()
 
+            vim.lsp.config("pyright", {
+              before_init = function(_, config)
+                config.settings = config.settings or {}
+                config.settings.python = config.settings.python or {}
+                config.settings.python.pythonPath = get_python_path(config.root_dir)
+              end,
+              settings = {
+                python = {
+                  analysis = {
+                    autoSearchPaths = true,
+                    useLibraryCodeForTypes = true,
+                    diagnosticMode = "workspace",
+                  },
+                },
+              },
+            })
+
             -- Initialize mason
             require('mason').setup({})
             require('mason-lspconfig').setup({
-              ensure_installed = { 'rust_analyzer', 'cssls', 'html', 'lua_ls', 'gopls' },
+              ensure_installed = { 'rust_analyzer', 'cssls', 'html', 'lua_ls', 'gopls', 'pyright' },
               handlers = {
                 lsp.default_setup,
               }
