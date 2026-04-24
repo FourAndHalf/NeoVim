@@ -58,14 +58,6 @@ return {
 
             lsp.on_attach(on_attach)
 
-            vim.diagnostic.config({
-              virtual_text = true,
-              signs = true,
-              update_in_insert = false,
-              severity_sort = true,
-            })
-
-
         end
     },
     {
@@ -151,8 +143,8 @@ return {
             })
 
             -- Keymaps
-            vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",
-              { silent = true, desc = "Toggle Trouble Diagnostics" }
+            vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+              { silent = true, desc = "Document Diagnostics" }
             )
 
             vim.keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>",

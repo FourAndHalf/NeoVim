@@ -34,6 +34,11 @@ vim.keymap.set('n', '<leader>2', '2<C-w>w', { desc = 'Go to window 2' })
 vim.keymap.set('n', '<leader>3', '3<C-w>w', { desc = 'Go to window 3' })
 vim.keymap.set('n', '<leader>4', '4<C-w>w', { desc = 'Go to window 4' })
 
+-- Buffer navigation
+vim.keymap.set("n", "L", ":bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "H", ":bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "X", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
+
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
 

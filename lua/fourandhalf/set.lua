@@ -44,6 +44,7 @@ vim.diagnostic.config({
 
   virtual_text = {
     prefix = "● ",
+    source = "if_many",
   },
 
   float = {
@@ -51,4 +52,5 @@ vim.diagnostic.config({
   },
 
   update_in_insert = false,
+  severity_sort = true,
 })
