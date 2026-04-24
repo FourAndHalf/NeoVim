@@ -1,7 +1,7 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        dependencies = { 
+        dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
             "nvim-telescope/telescope-media-files.nvim"
@@ -49,10 +49,6 @@ return {
 
             -- Keymap to search specifically for media files
             vim.keymap.set('n', '<leader>pm', telescope.extensions.media_files.media_files, { desc = "Find media files" })
-
-            -- vim.keymap.set('n', '<leader>ps', function()
-            -- 	builtin.grep_string({ search = vim.fn.input("Grep > ") });
-            -- end)
 
         end
     }
