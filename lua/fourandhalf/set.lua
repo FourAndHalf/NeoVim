@@ -27,8 +27,23 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+vim.opt.autoread = true
 
 vim.opt.colorcolumn = "80"
+
+local external_change_reload_group = vim.api.nvim_create_augroup("ExternalFileChangeReload", { clear = true })
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  group = external_change_reload_group,
+  pattern = "*",
+  command = "checktime",
+})
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  group = external_change_reload_group,
+  pattern = "*",
+  callback = function()
+    vim.notify("File reloaded: changed outside Neovim", vim.log.levels.INFO)
+  end,
+})
 
 
 -- Diagnostics Config
